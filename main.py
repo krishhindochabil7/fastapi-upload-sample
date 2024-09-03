@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from typing import List
 import os
@@ -32,7 +32,7 @@ async def upload_file(files: List[UploadFile] = File(...)):
     for file in files:
         try:
             # Save the uploaded file to the "Temporary" folder
-            file_location = os.path.join(TEMP_DIR, file.filename)
+            file_location = os.path.join(TEMP_DIR)
             with open(file_location, "wb") as f:
                 f.write(await file.read())
 
